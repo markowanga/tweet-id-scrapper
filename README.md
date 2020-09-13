@@ -32,5 +32,5 @@ docker-compose up -scale chrome=5
 If there are too less, it is a possibility to easy use Twint for processing in next step.
 
 ## TODO
- [ ] Add global parameters like address for external selenium hub or specific WebDriver
- [ ] Add integration tests in CI to periodically verify the service
+ - [ ] Add global parameters like address for external selenium hub or specific WebDriver
+ - [ ] Add integration tests in CI to periodically verify the service
