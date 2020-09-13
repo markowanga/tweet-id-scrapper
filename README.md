@@ -37,7 +37,7 @@ If there are too less, it is a possibility to easy use Twint for processing in n
 After run docker-compose example configuration main service is running on http://localhost:8068.
 To scrap the tweet by its id just run following request:
 ```
-http://localhost:8068/scrapTweet/{tweet_id}
+GET http://localhost:8068/scrapTweet/{tweet_id}
 ```
 
 The service was tested manually on few ids and work correctly. 
