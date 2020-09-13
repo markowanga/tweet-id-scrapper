@@ -1,8 +1,14 @@
 package pl.theliver.tweetidscrapper.application
 
-import pl.theliver.tweetidscrapper.domain.Tweet
+import org.springframework.stereotype.Service
 import pl.theliver.tweetidscrapper.domain.TweetId
 
-interface ScrapService {
-    fun scrapTweetBy(tweetId: TweetId): Tweet?
+@Service
+class ScrapService(
+        private val pageDownloader: PageDownloader
+) {
+
+    fun scrapTweetBy(tweetId: TweetId) =
+            pageDownloader.getTwitterPage(tweetId).extractTweet()
+
 }

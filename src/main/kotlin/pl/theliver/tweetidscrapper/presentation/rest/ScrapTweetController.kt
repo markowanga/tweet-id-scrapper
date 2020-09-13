@@ -8,7 +8,6 @@ import pl.theliver.tweetidscrapper.application.ScrapGateway
 import pl.theliver.tweetidscrapper.domain.Tweet
 import pl.theliver.tweetidscrapper.domain.TweetId
 import pl.theliver.tweetidscrapper.presentation.rest.dto.TweetDto
-import pl.theliver.tweetidscrapper.presentation.rest.dto.TweetScrapResponse
 
 @RequestMapping("/")
 @RestController
@@ -17,16 +16,13 @@ class ScrapTweetController(
 ) {
 
     @GetMapping("/scrapTweet/{tweetId}")
-    fun scrapTweet(@PathVariable tweetId: String): TweetScrapResponse =
-            toDto(scrapGateway.scrapTweetBy(TweetId(tweetId)))
+    fun scrapTweet(@PathVariable tweetId: String): TweetDto {
+        println("controller scrapTweet")
+        return toDto(scrapGateway.scrapTweetBy(TweetId(tweetId)))
+    }
 
-    private fun toDto(tweet: Tweet?): TweetScrapResponse =
-            TweetScrapResponse(
-                    tweet != null,
-                    when (tweet) {
-                        null -> null
-                        else -> with(tweet) { TweetDto(id.value, content.value, username.value) }
-                    }
-            )
+    private fun toDto(tweet: Tweet): TweetDto = with(tweet) {
+        TweetDto(id.value, content.value, username.value)
+    }
 
 }

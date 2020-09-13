@@ -1,6 +1,6 @@
 package pl.theliver.tweetidscrapper.domain
 
-class Tweet(
+data class Tweet(
         val id: TweetId,
         val content: TweetContent,
         val username: TweetUsername

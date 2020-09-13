@@ -21,6 +21,8 @@ repositories {
     mavenCentral()
 }
 
+val seleniumVersion = "3.141.59"
+
 dependencies {
     implementation("org.springframework.boot:spring-boot-starter-web")
     implementation("com.fasterxml.jackson.module:jackson-module-kotlin")
@@ -34,9 +36,9 @@ dependencies {
     implementation("com.squareup.okhttp3:okhttp:4.8.1")
     implementation("com.google.code.gson:gson:2.8.6")
 
-    implementation("org.seleniumhq.selenium:selenium-java:3.141.59")
-    implementation("org.seleniumhq.selenium:selenium-chrome-driver:2.23.0")
-    implementation ("org.seleniumhq.selenium:selenium-firefox-driver:3.141.59")
+    implementation("org.seleniumhq.selenium:selenium-java:$seleniumVersion")
+    implementation("org.seleniumhq.selenium:selenium-chrome-driver:$seleniumVersion")
+    implementation ("org.seleniumhq.selenium:selenium-firefox-driver:$seleniumVersion")
 
     compileOnly("org.projectlombok:lombok")
     annotationProcessor("org.projectlombok:lombok")

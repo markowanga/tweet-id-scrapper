@@ -1,11 +1,11 @@
 pipeline {
     environment {
-        registry = 'marcinwatroba/tweet_id_scrapper'
+        registry = 'marcinwatroba/tweet-id-scrapper'
         registryCredential = 'marcinwatroba_dockerhub'
     }
     agent {
         docker {
-            image 'openjdk:8-jdk'
+            image 'openjdk:11-jdk'
             args '-u root -v /var/run/docker.sock:/var/run/docker.sock'
         }
     }
@@ -46,29 +46,6 @@ pipeline {
                         dockerImageLatest.push()
                     }
                 }
-            }
-        }
-        stage('Deploy') {
-            steps {
-                sh "mv src/main/docker/docker-compose.yml ci/"
-                sshPublisher(
-                        continueOnError: false,
-                        failOnError: true,
-                        publishers: [
-                                sshPublisherDesc(
-                                        configName: 'DS_SERVER',
-                                        verbose: true,
-                                        transfers: [
-                                                sshTransfer(
-                                                        sourceFiles: "ci/",
-                                                        removePrefix: "ci/",
-                                                        remoteDirectory: 'projects/gold_wallet',
-                                                        execCommand: "bash projects/gold_wallet/deploy.sh"
-                                                )
-                                        ]
-                                )
-                        ]
-                )
             }
         }
     }

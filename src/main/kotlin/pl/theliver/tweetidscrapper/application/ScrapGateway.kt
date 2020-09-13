@@ -8,5 +8,5 @@ import pl.theliver.tweetidscrapper.domain.TweetId
 class ScrapGateway(
         private val scrapService: ScrapService
 ) {
-    fun scrapTweetBy(tweetId: TweetId): Tweet? = scrapService.scrapTweetBy(tweetId)
+    fun scrapTweetBy(tweetId: TweetId): Tweet = scrapService.scrapTweetBy(tweetId)
 }
