@@ -11,6 +11,8 @@ The details of tweets are extracted by using css selectors of document DOM archi
 Sometimes if the page is modified, the script needs to be improved.
 
 ## Basic usage
+
+### Start service
 In main project catalog is docker-compose configuration.
 To easy services host run below commands:
 ```
@@ -30,6 +32,16 @@ docker-compose up --scale chrome=5
 ```
 
 If there are too less, it is a possibility to easy use Twint for processing in next step.
+
+### Scrap tweet by id
+After run docker-compose example configuration main service is running on http://localhost:8068.
+To scrap the tweet by its id just run following request:
+```
+http://localhost:8068/scrapTweet/{tweet_id}
+```
+
+The service was tested manually on few ids and work correctly. 
+If service return non success code please report this in issue.
 
 ## TODO
  - [ ] Add global parameters like address for external selenium hub or specific WebDriver
