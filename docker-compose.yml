@@ -15,7 +15,7 @@ services:
     ports:
       - "4444:4444"
 
-#  tweet-id-scrapper-server:
-#    image: marcinwatroba/tweet-id-scrapper:latest
-#    ports:
-#      - "8068:8080"
+  tweet-id-scrapper-server:
+    image: marcinwatroba/tweet-id-scrapper:latest
+    ports:
+      - "8068:8080"

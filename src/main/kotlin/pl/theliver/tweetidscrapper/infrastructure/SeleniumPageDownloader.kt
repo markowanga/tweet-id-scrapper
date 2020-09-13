@@ -39,7 +39,7 @@ class SeleniumPageDownloader : PageDownloader {
     }
 
     companion object {
-        private const val SELENIUM_HUB_HOST = "http://localhost:4444/wd/hub"
+        private const val SELENIUM_HUB_HOST = "http://selenium-hub:4444/wd/hub"
         private fun getTwitterUrlBy(tweetId: TweetId) = "https://twitter.com/any/status/${tweetId.value}"
     }
 
