@@ -21,12 +21,12 @@ docker-compose up
 
 Nodes are not good in parallelize -- if multiple requests are running the time for response grow up.
 The good solution for this is run more selenium nodes. 
-Scaling can be archived by adding `-scale chrome=5` to docker-compose where number 5 is a number of instances.
+Scaling can be archived by adding `--scale chrome=5` to docker-compose where number 5 is a number of instances.
 Below commands with scaling:
 ```
 git clone https://github.com/markowanga/tweet-id-scrapper.git
 cd tweet-id-scrapper
-docker-compose up -scale chrome=5
+docker-compose up --scale chrome=5
 ```
 
 If there are too less, it is a possibility to easy use Twint for processing in next step.
