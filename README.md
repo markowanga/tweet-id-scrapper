@@ -58,3 +58,4 @@ If service returns non success code please report this in issue.
  - [ ] Add global parameters like address for external selenium hub or specific WebDriver
  - [ ] Add integration tests in CI to verify the service periodically
  - [ ] Make locale settings easy
+ - [ ] Add config for easy development (without selenium hub)
