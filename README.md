@@ -46,7 +46,8 @@ Success response returns the JSON:
 {
     "tweetId": "tweet_id",
     "tweetContent": "content",
-    "tweetUsername": "@username"
+    "tweetUsername": "@username",
+    "createdDate":"yyyy-MM-ddTHH:mm"
 }
 ```
 
@@ -56,3 +57,4 @@ If service returns non success code please report this in issue.
 ## TODO
  - [ ] Add global parameters like address for external selenium hub or specific WebDriver
  - [ ] Add integration tests in CI to verify the service periodically
+ - [ ] Make locale settings easy

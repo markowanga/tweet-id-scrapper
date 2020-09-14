@@ -2,14 +2,13 @@ package pl.theliver.tweetidscrapper.infrastructure
 
 import org.jsoup.Jsoup
 import org.openqa.selenium.WebDriver
+import org.openqa.selenium.chrome.ChromeDriver
 import org.openqa.selenium.chrome.ChromeOptions
-import org.openqa.selenium.remote.RemoteWebDriver
 import org.openqa.selenium.support.ui.WebDriverWait
 import org.springframework.stereotype.Component
 import pl.theliver.tweetidscrapper.application.PageDownloader
 import pl.theliver.tweetidscrapper.domain.TweetId
 import pl.theliver.tweetidscrapper.domain.TweetPageContent
-import java.net.URL
 
 
 @Component
@@ -17,7 +16,7 @@ class SeleniumPageDownloader : PageDownloader {
     override fun getTwitterPage(tweetId: TweetId): TweetPageContent {
         val contentTweet: TweetPageContent
         val driverOptions = ChromeOptions().apply { setAcceptInsecureCerts(true) }
-        val driver: WebDriver = RemoteWebDriver(URL(SELENIUM_HUB_HOST), driverOptions)
+        val driver: WebDriver = ChromeDriver() // RemoteWebDriver(URL(SELENIUM_HUB_HOST), driverOptions)
         try {
             println("Open url: ${getTwitterUrlBy(tweetId)}")
             driver.get(getTwitterUrlBy(tweetId))
