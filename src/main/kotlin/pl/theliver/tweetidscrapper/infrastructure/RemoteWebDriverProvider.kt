@@ -15,7 +15,7 @@ class RemoteWebDriverProvider : WebDriverProvider {
     }
 
     companion object {
-        private const val SELENIUM_HUB_HOST = "http://192.168.0.124:4444/wd/hub"
+        private const val SELENIUM_HUB_HOST = "http://selenium-hub:4444/wd/hub"
     }
 
 }
