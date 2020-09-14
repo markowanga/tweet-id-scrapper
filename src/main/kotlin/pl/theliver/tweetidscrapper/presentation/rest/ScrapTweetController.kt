@@ -10,13 +10,13 @@ import pl.theliver.tweetidscrapper.domain.TweetId
 import pl.theliver.tweetidscrapper.presentation.rest.dto.TweetDto
 import java.text.SimpleDateFormat
 
-@RequestMapping("/")
+@RequestMapping("/scrapTweet")
 @RestController
 class ScrapTweetController(
         private val scrapGateway: ScrapGateway
 ) {
 
-    @GetMapping("/scrapTweet/{tweetId}")
+    @GetMapping("/{tweetId}")
     fun scrapTweet(@PathVariable tweetId: String): TweetDto {
         println("controller scrapTweet")
         return toDto(scrapGateway.scrapTweetBy(TweetId(tweetId)))
