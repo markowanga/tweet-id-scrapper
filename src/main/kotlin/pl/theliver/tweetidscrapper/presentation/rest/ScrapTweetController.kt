@@ -27,7 +27,7 @@ class ScrapTweetController(
                 id.value,
                 content.value,
                 username.value,
-                SimpleDateFormat("yyyy-MM-dd'T'HH:mm").format(createdDate.value)
+                SimpleDateFormat("yyyy-MM-ddTHH:mm").format(createdDate.value)
         )
     }
 
