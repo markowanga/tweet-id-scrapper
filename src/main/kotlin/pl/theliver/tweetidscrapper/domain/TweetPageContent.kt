@@ -12,6 +12,7 @@ data class TweetPageContent(
     fun extractTweet(): Tweet {
         val article = Jsoup.parse(value).select("article").toList()
                 .first { elementContainsTweetDetails(it, tweetId) }
+        println(article)
         val usernameString = JsoupUtils.selectFromElement(article, USERNAME_SELECTORS).getFirstTextElement()
         val tweetString = JsoupUtils.selectFromElement(article, CONTENT_SELECTORS).getFirstTextElement()
         val createdDateString = JsoupUtils.selectFromElement(article, CREATED_DATE_SELECTORS)
