@@ -4,15 +4,18 @@ import org.jsoup.Jsoup
 import org.openqa.selenium.WebDriver
 import org.openqa.selenium.support.ui.WebDriverWait
 import org.springframework.stereotype.Component
-import pl.theliver.tweetidscrapper.application.PageDownloader
+import pl.theliver.tweetidscrapper.application.TweetExtractor
+import pl.theliver.tweetidscrapper.application.TweetPageDownloader
+import pl.theliver.tweetidscrapper.domain.TweetExtractResult
 import pl.theliver.tweetidscrapper.domain.TweetId
 import pl.theliver.tweetidscrapper.domain.TweetPageContent
 
 
 @Component
-class SeleniumPageDownloader(
-        private val webDriverProvider: WebDriverProvider
-) : PageDownloader {
+class SeleniumTweetPageDownloader(
+        private val webDriverProvider: WebDriverProvider,
+        private val tweetExtractor: TweetExtractor
+) : TweetPageDownloader {
 
     override fun getTwitterPage(tweetId: TweetId, maxSecondsWait: Long): TweetPageContent {
         val contentTweet: TweetPageContent
@@ -21,7 +24,7 @@ class SeleniumPageDownloader(
             println("Open url: ${getTwitterUrlBy(tweetId)}")
             driver.get(getTwitterUrlBy(tweetId))
             waitForLoad(driver, tweetId, maxSecondsWait)
-            contentTweet = TweetPageContent(driver.pageSource, tweetId)
+            contentTweet = TweetPageContent(driver.pageSource)
         } finally {
             driver.quit()
         }
@@ -31,7 +34,9 @@ class SeleniumPageDownloader(
     private fun waitForLoad(driver: WebDriver?, tweetId: TweetId, maxSecondsWait: Long) {
         val wait = WebDriverWait(driver, maxSecondsWait)
         try {
-            wait.until { TweetPageContent.elementContainsTweetDetails(Jsoup.parse(it!!.pageSource!!), tweetId) }
+            wait.until {
+                tweetExtractor.extractTweet(TweetPageContent(it.pageSource), tweetId) != TweetExtractResult.ExtractError
+            }
         } catch (e: Exception) {
             println(e)
         }

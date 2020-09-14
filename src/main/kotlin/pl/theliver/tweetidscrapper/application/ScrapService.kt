@@ -5,13 +5,14 @@ import pl.theliver.tweetidscrapper.domain.TweetId
 
 @Service
 class ScrapService(
-        private val pageDownloader: PageDownloader
+        private val tweetPageDownloader: TweetPageDownloader,
+        private val tweetExtractor: TweetExtractor
 ) {
 
     fun scrapTweetBy(tweetId: TweetId) =
-            scrapPageContentBy(tweetId).extractTweet()
+            tweetExtractor.extractTweet(scrapPageContentBy(tweetId), tweetId)
 
     fun scrapPageContentBy(tweetId: TweetId, maxSecondsWait: Long = 20L) =
-            pageDownloader.getTwitterPage(tweetId, maxSecondsWait)
+            tweetPageDownloader.getTwitterPage(tweetId, maxSecondsWait)
 
 }

@@ -6,7 +6,7 @@ import org.springframework.web.bind.annotation.RequestMapping
 import org.springframework.web.bind.annotation.RestController
 import pl.theliver.tweetidscrapper.application.ScrapGateway
 import pl.theliver.tweetidscrapper.domain.TweetId
-import pl.theliver.tweetidscrapper.presentation.rest.dto.TweetDto
+import pl.theliver.tweetidscrapper.presentation.rest.dto.TweetResultDto
 
 @RequestMapping("/scrapTweet")
 @RestController
@@ -15,9 +15,8 @@ class ScrapTweetController(
 ) {
 
     @GetMapping("/{tweetId}")
-    fun scrapTweet(@PathVariable tweetId: String): TweetDto {
-        println("controller scrapTweet")
-        return TweetDto.from(scrapGateway.scrapTweetBy(TweetId(tweetId)))
+    fun scrapTweet(@PathVariable tweetId: String): TweetResultDto {
+        return TweetResultDto.from(scrapGateway.scrapTweetBy(TweetId(tweetId)))
     }
 
 }
