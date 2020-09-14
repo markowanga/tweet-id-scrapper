@@ -14,13 +14,13 @@ class SeleniumPageDownloader(
         private val webDriverProvider: WebDriverProvider
 ) : PageDownloader {
 
-    override fun getTwitterPage(tweetId: TweetId): TweetPageContent {
+    override fun getTwitterPage(tweetId: TweetId, maxSecondsWait: Long): TweetPageContent {
         val contentTweet: TweetPageContent
         val driver: WebDriver = webDriverProvider.getWebDriver()
         try {
             println("Open url: ${getTwitterUrlBy(tweetId)}")
             driver.get(getTwitterUrlBy(tweetId))
-            waitForLoad(driver, tweetId)
+            waitForLoad(driver, tweetId, maxSecondsWait)
             contentTweet = TweetPageContent(driver.pageSource, tweetId)
         } finally {
             driver.quit()
@@ -28,8 +28,8 @@ class SeleniumPageDownloader(
         return contentTweet
     }
 
-    private fun waitForLoad(driver: WebDriver?, tweetId: TweetId) {
-        val wait = WebDriverWait(driver, 40)
+    private fun waitForLoad(driver: WebDriver?, tweetId: TweetId, maxSecondsWait: Long) {
+        val wait = WebDriverWait(driver, maxSecondsWait)
         try {
             wait.until { TweetPageContent.elementContainsTweetDetails(Jsoup.parse(it!!.pageSource!!), tweetId) }
         } catch (e: Exception) {

@@ -10,5 +10,6 @@ class ScrapGateway(
         private val scrapService: ScrapService
 ) {
     fun scrapTweetBy(tweetId: TweetId): Tweet = scrapService.scrapTweetBy(tweetId)
-    fun scrapPageContentBy(tweetId: TweetId): TweetPageContent = scrapService.scrapPageContentBy(tweetId)
+    fun scrapPageContentBy(tweetId: TweetId, maxSecondsWait: Long): TweetPageContent =
+            scrapService.scrapPageContentBy(tweetId, maxSecondsWait)
 }

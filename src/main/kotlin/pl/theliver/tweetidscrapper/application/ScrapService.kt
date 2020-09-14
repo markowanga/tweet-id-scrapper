@@ -9,9 +9,9 @@ class ScrapService(
 ) {
 
     fun scrapTweetBy(tweetId: TweetId) =
-            pageDownloader.getTwitterPage(tweetId).extractTweet()
+            scrapPageContentBy(tweetId).extractTweet()
 
-    fun scrapPageContentBy(tweetId: TweetId) =
-            pageDownloader.getTwitterPage(tweetId)
+    fun scrapPageContentBy(tweetId: TweetId, maxSecondsWait: Long = 20L) =
+            pageDownloader.getTwitterPage(tweetId, maxSecondsWait)
 
 }

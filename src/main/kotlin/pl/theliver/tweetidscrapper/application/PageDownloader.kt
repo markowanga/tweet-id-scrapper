@@ -4,5 +4,5 @@ import pl.theliver.tweetidscrapper.domain.TweetId
 import pl.theliver.tweetidscrapper.domain.TweetPageContent
 
 interface PageDownloader {
-    fun getTwitterPage(tweetId: TweetId): TweetPageContent
+    fun getTwitterPage(tweetId: TweetId, maxSecondsWait: Long): TweetPageContent
 }

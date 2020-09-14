@@ -15,10 +15,11 @@ class ScrapPageContentController(
         private val scrapGateway: ScrapGateway
 ) {
 
-    @GetMapping("/{tweetId}")
-    fun scrapTweet(@PathVariable tweetId: String): PageContentDto {
-        return toDto(scrapGateway.scrapPageContentBy(TweetId(tweetId)))
-    }
+    @GetMapping("/{tweetId}/{maxSecondsWait}")
+    fun scrapTweet(
+            @PathVariable tweetId: String,
+            @PathVariable maxSecondsWait: Long
+    ) = toDto(scrapGateway.scrapPageContentBy(TweetId(tweetId), maxSecondsWait))
 
     private fun toDto(pageContent: TweetPageContent): PageContentDto = PageContentDto(pageContent.value)
 
