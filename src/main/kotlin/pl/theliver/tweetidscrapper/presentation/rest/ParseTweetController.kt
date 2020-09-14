@@ -5,7 +5,7 @@ import pl.theliver.tweetidscrapper.domain.TweetId
 import pl.theliver.tweetidscrapper.domain.TweetPageContent
 import pl.theliver.tweetidscrapper.presentation.rest.dto.TweetDto
 
-@RequestMapping("/scrapTweet")
+@RequestMapping("/parseTweet")
 @RestController
 class ParseTweetController {
 
