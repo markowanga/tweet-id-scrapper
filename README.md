@@ -43,6 +43,10 @@ GET http://localhost:8068/scrapTweet/{tweet_id}
 
 Success response returns the JSON:
 ```
+Request:
+GET http://localhost:8068/scrapTweet/1304026844073807874
+
+Response:
 {
     "status": "SUCCESS",
     "tweet": {
