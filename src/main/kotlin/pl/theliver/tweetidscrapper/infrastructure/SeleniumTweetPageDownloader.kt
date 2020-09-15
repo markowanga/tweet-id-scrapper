@@ -1,6 +1,5 @@
 package pl.theliver.tweetidscrapper.infrastructure
 
-import org.jsoup.Jsoup
 import org.openqa.selenium.WebDriver
 import org.openqa.selenium.support.ui.WebDriverWait
 import org.springframework.stereotype.Component

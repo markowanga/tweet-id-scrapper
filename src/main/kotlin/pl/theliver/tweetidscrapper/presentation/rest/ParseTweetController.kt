@@ -14,6 +14,8 @@ class ParseTweetController(private val scrapGateway: ScrapGateway) {
     fun scrapTweet(
             @PathVariable tweetId: String,
             @RequestBody htmlContent: String
-    ) = TweetResultDto.from(scrapGateway.parseTweetPage(TweetPageContent(htmlContent), TweetId(tweetId)))
+    ) = TweetResultDto.from(
+            scrapGateway.parseTweetPage(TweetPageContent(htmlContent), TweetId(tweetId))
+    ).wrapInResponseEntity()
 
 }

@@ -16,6 +16,8 @@ class TweetExtractor(private val simpleExtractors: List<SimpleTweetExtractor>) {
         return if (nonErrorResults.toSet().size == 1) {
             nonErrorResults[0]
         } else {
+            println("multiple results")
+            println(nonErrorResults)
             TweetExtractResult.ExtractError
         }
     }

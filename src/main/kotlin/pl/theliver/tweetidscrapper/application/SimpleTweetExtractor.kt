@@ -1,9 +1,11 @@
 package pl.theliver.tweetidscrapper.application
 
+import org.slf4j.LoggerFactory
 import pl.theliver.tweetidscrapper.domain.TweetExtractResult
 import pl.theliver.tweetidscrapper.domain.TweetId
 import pl.theliver.tweetidscrapper.domain.TweetPageContent
 import java.text.SimpleDateFormat
+import java.util.*
 
 abstract class SimpleTweetExtractor {
 
@@ -11,6 +13,8 @@ abstract class SimpleTweetExtractor {
         return try {
             extractTweetImplementation(tweetPageContent, tweetId)
         } catch (e: Exception) {
+            val log = LoggerFactory.getLogger(javaClass)!!
+            log.error(e.message, e)
             TweetExtractResult.ExtractError
         }
     }
@@ -23,6 +27,6 @@ abstract class SimpleTweetExtractor {
     protected fun parseDate(dateString: String) = formatter.parse(dateString)!!
 
     companion object {
-        private val formatter = SimpleDateFormat("H:mm aaa · MMM d, yyyy")
+        private val formatter = SimpleDateFormat("H:mm aaa · MMM d, yyyy", Locale.ENGLISH)
     }
 }
