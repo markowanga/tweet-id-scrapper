@@ -1,6 +1,5 @@
 package pl.theliver.tweetidscrapper.application
 
-import org.slf4j.LoggerFactory
 import pl.theliver.tweetidscrapper.domain.TweetExtractResult
 import pl.theliver.tweetidscrapper.domain.TweetId
 import pl.theliver.tweetidscrapper.domain.TweetPageContent
@@ -13,8 +12,6 @@ abstract class SimpleTweetExtractor {
         return try {
             extractTweetImplementation(tweetPageContent, tweetId)
         } catch (e: Exception) {
-            val log = LoggerFactory.getLogger(javaClass)!!
-            log.error(e.message, e)
             TweetExtractResult.ExtractError
         }
     }

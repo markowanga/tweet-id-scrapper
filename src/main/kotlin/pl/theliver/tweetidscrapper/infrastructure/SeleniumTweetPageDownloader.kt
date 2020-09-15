@@ -20,7 +20,6 @@ class SeleniumTweetPageDownloader(
         val contentTweet: TweetPageContent
         val driver: WebDriver = webDriverProvider.getWebDriver()
         try {
-            println("Open url: ${getTwitterUrlBy(tweetId)}")
             driver.get(getTwitterUrlBy(tweetId))
             waitForLoad(driver, tweetId, maxSecondsWait)
             contentTweet = TweetPageContent(driver.pageSource)
@@ -37,7 +36,6 @@ class SeleniumTweetPageDownloader(
                 tweetExtractor.extractTweet(TweetPageContent(it.pageSource), tweetId) != TweetExtractResult.ExtractError
             }
         } catch (e: Exception) {
-            println(e)
         }
     }
 

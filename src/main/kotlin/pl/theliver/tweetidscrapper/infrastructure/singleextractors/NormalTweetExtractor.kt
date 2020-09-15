@@ -10,9 +10,7 @@ class NormalTweetExtractor : SimpleTweetExtractor() {
 
     override fun extractTweetImplementation(tweetPageContent: TweetPageContent, tweetId: TweetId): TweetExtractResult {
         val article = Jsoup.parse(tweetPageContent.value).select("article").toList()
-                .first {
-                    println(it)
-                    elementContainsTweetDetails(it, tweetId) }
+                .first { elementContainsTweetDetails(it, tweetId) }
         val usernameString = JsoupUtils.selectFromElement(article, USERNAME_SELECTORS).getFirstTextElement()
         val tweetString = JsoupUtils.selectFromElement(article, CONTENT_SELECTORS).getFirstTextElement()
         val createdDateString = JsoupUtils.selectFromElement(article, CREATED_DATE_SELECTORS)
