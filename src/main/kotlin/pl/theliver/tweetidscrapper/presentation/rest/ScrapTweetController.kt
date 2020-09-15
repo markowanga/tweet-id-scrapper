@@ -16,6 +16,6 @@ class ScrapTweetController(
 
     @GetMapping("/{tweetId}")
     fun scrapTweet(@PathVariable tweetId: String) =
-            TweetResultDto.from(scrapGateway.scrapTweetBy(TweetId(tweetId))).wrapInResponseEntity()
+            TweetResultDto.from(scrapGateway.scrapTweetBy(TweetId(tweetId)))
 
 }

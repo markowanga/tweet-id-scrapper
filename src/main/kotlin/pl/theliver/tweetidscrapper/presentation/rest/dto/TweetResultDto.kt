@@ -9,15 +9,6 @@ data class TweetResultDto(
         val tweet: TweetDto?
 ) {
 
-    fun wrapInResponseEntity() =
-            ResponseEntity(
-                    this,
-                    when (status) {
-                        Status.ERROR -> HttpStatus.INTERNAL_SERVER_ERROR
-                        else -> HttpStatus.OK
-                    }
-            )
-
     enum class Status {
         SUCCESS, NO_EXISTS, ERROR, SUSPEND_ACCOUNT
     }

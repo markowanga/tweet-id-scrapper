@@ -44,18 +44,30 @@ GET http://localhost:8068/scrapTweet/{tweet_id}
 Success response returns the JSON:
 ```
 {
-    "tweetId": "tweet_id",
-    "tweetContent": "content",
-    "tweetUsername": "@username",
-    "createdDate":"yyyy-MM-ddTHH:mm"
+    "status": "SUCCESS",
+    "tweet": {
+        "id": "1304026844073807874",
+        "content": "we’re only one story away...",
+        "username": "@netflix",
+        "createdDate": "2020-09-10T12:00"
+    }
 }
 ```
+
+Where:
+ - **status**: enum of values — SUCCESS | NO_EXISTS | ERROR | SUSPEND_ACCOUNT
+ - **tweet**: object representing tweet, when returned other status than SUCCESS the value is null
+   - **id**: id of the tweet
+   - **content**: full content of tweet
+   - **username**: username of tweet author
+   - **createdDate**: created date of tweet
 
 The service was tested manually on few ids and worked correctly. 
 If service returns non success code please report this in issue.
 
 ## TODO
- - [ ] Add global parameters like address for external selenium hub or specific WebDriver
+ - [ ] Add global parameters like address for external selenium hub
  - [ ] Add integration tests in CI to verify the service periodically
  - [ ] Make locale settings easy
  - [ ] Add config for easy development (without selenium hub)
+ - [ ] Add Swagger
