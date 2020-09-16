@@ -75,7 +75,7 @@ The application uses swagger to generate api documentation,
 it is available at http://localhost:8068/swagger-ui.html
 
 ## TODO
- - [ ] Add global parameters like address for external selenium hub
+ - [x] Add global parameters like address for external selenium hub
  - [ ] Add integration tests in CI to verify the service periodically
  - [ ] Make locale settings easy
  - [ ] Add config for easy development (without selenium hub)
