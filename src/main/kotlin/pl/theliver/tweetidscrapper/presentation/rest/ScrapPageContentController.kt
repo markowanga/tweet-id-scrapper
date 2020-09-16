@@ -1,5 +1,6 @@
 package pl.theliver.tweetidscrapper.presentation.rest
 
+import io.swagger.annotations.ApiOperation
 import org.springframework.web.bind.annotation.GetMapping
 import org.springframework.web.bind.annotation.PathVariable
 import org.springframework.web.bind.annotation.RequestMapping
@@ -15,6 +16,7 @@ class ScrapPageContentController(
         private val scrapGateway: ScrapGateway
 ) {
 
+    @ApiOperation("Scrap page html for tweet")
     @GetMapping("/{tweetId}/{maxSecondsWait}")
     fun scrapTweet(
             @PathVariable tweetId: String,

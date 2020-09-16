@@ -69,6 +69,11 @@ Where:
 The service was tested manually on few ids and worked correctly. 
 If service returns non success code please report this in issue.
 
+# More about
+
+The application uses swagger to generate api documentation,
+it is available at http://localhost:8068/swagger-ui.html
+
 ## TODO
  - [ ] Add global parameters like address for external selenium hub
  - [ ] Add integration tests in CI to verify the service periodically

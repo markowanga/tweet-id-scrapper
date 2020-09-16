@@ -1,11 +1,12 @@
 package pl.theliver.tweetidscrapper.presentation.rest.dto
 
-import org.springframework.http.HttpStatus
-import org.springframework.http.ResponseEntity
+import io.swagger.annotations.ApiModelProperty
 import pl.theliver.tweetidscrapper.domain.TweetExtractResult
 
 data class TweetResultDto(
+        @ApiModelProperty("Status of tweet result")
         val status: Status,
+        @ApiModelProperty("Returned tweet details, when other status than SUCCESS, value is null")
         val tweet: TweetDto?
 ) {
 

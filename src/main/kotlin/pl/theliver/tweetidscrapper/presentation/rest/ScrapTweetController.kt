@@ -1,5 +1,6 @@
 package pl.theliver.tweetidscrapper.presentation.rest
 
+import io.swagger.annotations.ApiOperation
 import org.springframework.web.bind.annotation.GetMapping
 import org.springframework.web.bind.annotation.PathVariable
 import org.springframework.web.bind.annotation.RequestMapping
@@ -14,6 +15,7 @@ class ScrapTweetController(
         private val scrapGateway: ScrapGateway
 ) {
 
+    @ApiOperation("Scrap and return tweet by id")
     @GetMapping("/{tweetId}")
     fun scrapTweet(@PathVariable tweetId: String) =
             TweetResultDto.from(scrapGateway.scrapTweetBy(TweetId(tweetId)))
