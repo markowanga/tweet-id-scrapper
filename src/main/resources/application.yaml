@@ -1,0 +1,4 @@
+pl:
+  theliver:
+    tweetidscrapper:
+      selenium-host: http://selenium-hub:4444/wd/hub
