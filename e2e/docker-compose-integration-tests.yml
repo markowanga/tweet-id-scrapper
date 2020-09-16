@@ -1,0 +1,17 @@
+version: "3.8"
+services:
+  chrome:
+    image: selenium/node-chrome:3.141.59
+    volumes:
+      - /dev/shm:/dev/shm
+    depends_on:
+      - selenium-hub
+    environment:
+      - HUB_HOST=selenium-hub
+      - HUB_PORT=4444
+
+  selenium-hub:
+    image: selenium/hub:3.141.59
+
+  tweet-id-scrapper-server:
+    image: marcinwatroba/tweet-id-scrapper:latest

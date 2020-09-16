@@ -14,6 +14,7 @@ data class TweetDto(
         @ApiModelProperty("Created date time of tweet in format yyyy-MM-ddTHH:mm", example="2020-06-12T12:42")
         val createdDate: String
 ) {
+
     companion object {
         fun from(tweet: Tweet): TweetDto = with(tweet) {
             TweetDto(
@@ -24,4 +25,5 @@ data class TweetDto(
             )
         }
     }
+
 }

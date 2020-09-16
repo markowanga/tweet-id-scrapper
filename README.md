@@ -77,6 +77,5 @@ it is available at http://localhost:8068/swagger-ui.html
 ## TODO
  - [x] Add global parameters like address for external selenium hub
  - [ ] Add integration tests in CI to verify the service periodically
- - [ ] Make locale settings easy
- - [ ] Add config for easy development (without selenium hub)
+ - [ ] Show statuses of builds and integration tests
  - [x] Add Swagger
