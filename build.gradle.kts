@@ -21,7 +21,11 @@ repositories {
     mavenCentral()
 }
 
+val swaggerVersion = "2.9.2"
 val seleniumVersion = "3.141.59"
+val jsoupVersion = "1.13.1"
+val okhttpVersion = "4.8.1"
+val gsonVersion = "2.8.6"
 
 dependencies {
     implementation("org.springframework.boot:spring-boot-starter-web")
@@ -29,19 +33,17 @@ dependencies {
     implementation("org.jetbrains.kotlin:kotlin-reflect")
     implementation("org.jetbrains.kotlin:kotlin-stdlib-jdk8")
 
-    implementation("com.google.guava:guava:29.0-jre")
+    implementation("org.jsoup:jsoup:$jsoupVersion")
+    implementation("com.squareup.okhttp3:okhttp:$okhttpVersion")
+    implementation("com.google.code.gson:gson:$gsonVersion")
 
-
-    implementation("org.jsoup:jsoup:1.13.1")
-    implementation("com.squareup.okhttp3:okhttp:4.8.1")
-    implementation("com.google.code.gson:gson:2.8.6")
+    implementation("io.springfox:springfox-swagger2:$swaggerVersion")
+    implementation("io.springfox:springfox-swagger-ui:$swaggerVersion")
 
     implementation("org.seleniumhq.selenium:selenium-java:$seleniumVersion")
     implementation("org.seleniumhq.selenium:selenium-chrome-driver:$seleniumVersion")
     implementation ("org.seleniumhq.selenium:selenium-firefox-driver:$seleniumVersion")
 
-    compileOnly("org.projectlombok:lombok")
-    annotationProcessor("org.projectlombok:lombok")
     testImplementation("org.springframework.boot:spring-boot-starter-test") {
         exclude(group = "org.junit.vintage", module = "junit-vintage-engine")
     }

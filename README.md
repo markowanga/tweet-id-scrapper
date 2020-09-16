@@ -74,4 +74,4 @@ If service returns non success code please report this in issue.
  - [ ] Add integration tests in CI to verify the service periodically
  - [ ] Make locale settings easy
  - [ ] Add config for easy development (without selenium hub)
- - [ ] Add Swagger
+ - [x] Add Swagger
