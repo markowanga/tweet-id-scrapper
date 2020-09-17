@@ -1,0 +1,4 @@
+pl:
+  theliver:
+    tweetidscrapper:
+      selenium-host: http://localhost:46573/wd/hub

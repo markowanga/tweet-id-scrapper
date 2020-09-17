@@ -22,6 +22,23 @@ pipeline {
                 sh './gradlew test'
             }
         }
+        stage('Integration test') {
+            steps {
+                sh "apt-get update"
+                sh "apt-get install -y curl"
+                sh 'curl -fsSL https://get.docker.com -o get-docker.sh'
+                sh 'sh get-docker.sh'
+                sh 'curl -L "https://github.com/docker/compose/releases/download/1.27.3/docker-compose-$(uname -s)-$(uname -m)" -o /usr/local/bin/docker-compose'
+                sh 'chmod +x /usr/local/bin/docker-compose'
+                sh 'ln -s /usr/local/bin/docker-compose /usr/bin/docker-compose'
+                sh 'docker-compose --version'
+                sh 'docker-compose -f docker-compose-integration-tests.yml pull'
+                sh 'docker-compose -f docker-compose-integration-tests.yml up -d'
+                sh './gradlew integrationTest'
+                sh 'docker-compose -f docker-compose-integration-tests.yml stop'
+                sh 'docker-compose -f docker-compose-integration-tests.yml rm --force'
+            }
+        }
         stage('Build') {
             steps {
                 sh './gradlew bootJar'
@@ -29,10 +46,6 @@ pipeline {
         }
         stage('Prepare docker resources') {
             steps {
-                sh "apt-get update"
-                sh "apt-get install -y curl"
-                sh 'curl -fsSL https://get.docker.com -o get-docker.sh'
-                sh 'sh get-docker.sh'
                 sh "mv build/libs/*.jar src/main/docker/"
             }
         }
