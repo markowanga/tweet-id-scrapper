@@ -27,7 +27,7 @@ internal class ScrapTweetControllerTest {
 
     @Test
     fun testGetBirthdayDOW() {
-        readTestData().stream().parallel().forEach { testScrapTweet(it) }
+        readTestData().stream().forEach { testScrapTweet(it) }
     }
 
     private fun testScrapTweet(testCase: TextCase) {
