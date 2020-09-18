@@ -31,6 +31,7 @@ internal class ScrapTweetControllerTest {
         val response = scrapGateway.scrapTweetBy(TweetId(textCase.id))
                 .let { TweetResultDto.from(it) }
         val responseJson = Gson().toJson(response)
+        println(textCase.response, responseJson)
         assertEquals(textCase.response, responseJson)
     }
 
