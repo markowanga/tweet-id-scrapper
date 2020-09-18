@@ -1,6 +1,7 @@
 package pl.theliver.tweetidscrapper.presentation.rest
 
 import com.google.gson.Gson
+import com.google.gson.GsonBuilder
 import com.google.gson.reflect.TypeToken
 import org.junit.jupiter.api.Assertions.assertEquals
 import org.junit.jupiter.api.Test
@@ -13,6 +14,7 @@ import org.springframework.test.context.junit.jupiter.SpringExtension
 import pl.theliver.tweetidscrapper.application.ScrapGateway
 import pl.theliver.tweetidscrapper.domain.TweetId
 import pl.theliver.tweetidscrapper.presentation.rest.dto.TweetResultDto
+
 
 @AutoConfigureMockMvc
 @ExtendWith(SpringExtension::class)
@@ -30,9 +32,10 @@ internal class ScrapTweetControllerTest {
     fun testScrapTweet(textCase: TextCase) {
         val response = scrapGateway.scrapTweetBy(TweetId(textCase.id))
                 .let { TweetResultDto.from(it) }
-        val responseJson = Gson().toJson(response)
+        val gson = GsonBuilder().disableHtmlEscaping().create()!!
+        val responseJson = gson.toJson(response)
         println("expected: " + textCase.response)
-        println("current: $responseJson")
+        println("current : $responseJson")
         assertEquals(textCase.response, responseJson)
     }
 
