@@ -38,8 +38,6 @@ pipeline {
                 sh 'docker container ls -a'
                 sh 'curl http://192.168.0.124:46573'
                 sh './gradlew integrationTest --stacktrace'
-                sh 'docker-compose -f docker-compose-integration-tests.yml stop'
-                sh 'docker-compose -f docker-compose-integration-tests.yml rm --force'
             }
         }
         stage('Build') {
@@ -65,6 +63,8 @@ pipeline {
     }
     post {
         always {
+            sh 'docker-compose -f docker-compose-integration-tests.yml stop'
+            sh 'docker-compose -f docker-compose-integration-tests.yml rm --force'
             sh 'rm -rf *'
         }
 //        success {}
