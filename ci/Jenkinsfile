@@ -36,7 +36,7 @@ pipeline {
                 sh 'docker-compose -f docker-compose-integration-tests.yml up -d'
                 sleep 20
                 sh 'docker container ls -a'
-                sh 'curl http://localhost:46573'
+                sh 'curl http://192.168.0.124:46573'
                 sh './gradlew integrationTest --stacktrace'
                 sh 'docker-compose -f docker-compose-integration-tests.yml stop'
                 sh 'docker-compose -f docker-compose-integration-tests.yml rm --force'
