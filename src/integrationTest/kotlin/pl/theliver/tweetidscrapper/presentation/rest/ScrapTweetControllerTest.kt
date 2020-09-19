@@ -29,10 +29,10 @@ internal class ScrapTweetControllerTest {
         readTestData().forEach { testScrapTweet(it) }
     }
 
-    fun testScrapTweet(textCase: TextCase) {
+    fun testScrapTweet(textCase: TestCase) {
         val response = scrapGateway.scrapTweetBy(TweetId(textCase.id))
                 .let { TweetResultDto.from(it) }
-        val gson = GsonBuilder().disableHtmlEscaping().create()!!
+        val gson = GsonBuilder().create()!!
         val responseJson = gson.toJson(response)
         println("expected: " + textCase.response)
         println("current : $responseJson")
@@ -40,19 +40,18 @@ internal class ScrapTweetControllerTest {
     }
 
 
-    data class TextCase(val id: String, val response: String, val code: Int) : Arguments {
+    data class TestCase(val id: String, val response: String, val code: Int) : Arguments {
         override fun get(): Array<Any> {
             return listOf(id, response, code).toTypedArray()
         }
     }
 
     companion object {
-        fun readTestData(): Array<TextCase> {
+        fun readTestData(): Array<TestCase> {
             val classLoader = ScrapTweetControllerTest::class.java.classLoader!!
             val stream = classLoader.getResourceAsStream("test_data.json")!!
             val content = stream.readAllBytes().toString(Charsets.UTF_8)
-            val list: List<TextCase> = Gson().fromJson(content)
-//            return list
+            val list: List<TestCase> = Gson().fromJson(content)
             return list.toTypedArray()
         }
 
