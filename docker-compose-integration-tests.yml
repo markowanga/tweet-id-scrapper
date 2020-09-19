@@ -12,5 +12,8 @@ services:
 
   selenium-hub:
     image: selenium/hub:3.141.59
+
+  tweet-id-scrapper-server:
+    image: marcinwatroba/tweet-id-scrapper:latest
     ports:
-      - "46573:4444"
+      - "46573:8080"

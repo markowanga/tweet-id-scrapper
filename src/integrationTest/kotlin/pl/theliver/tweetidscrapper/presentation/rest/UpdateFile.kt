@@ -6,23 +6,25 @@ import okhttp3.Request
 import okhttp3.Response
 import java.io.File
 
-private fun getSingleTestCase(id: String): ScrapTweetControllerTest.TestCase {
+internal fun getSingleTestCase(id: String, host: String): ScrapTweetControllerTest.TestCase {
     val client: OkHttpClient = OkHttpClient().newBuilder()
             .build()
     val request: Request = Request.Builder()
-            .url("http://192.168.0.124:8068/scrapTweet/$id")
+            .url("$host/scrapTweet/$id")
             .method("GET", null)
             .build()
     val response: Response = client.newCall(request).execute()
     return ScrapTweetControllerTest.TestCase(id, response.body!!.string(), response.code)
 }
 
-fun main() {
+internal fun main() {
     val classLoader = ScrapTweetControllerTest::class.java.classLoader!!
     val stream = classLoader.getResourceAsStream("ids.txt")!!
     val content = stream.readAllBytes().toString(Charsets.UTF_8)
     val lines = content.lines()
-    val responses = lines.map { getSingleTestCase(it) }
+    val responses = lines.map {
+        getSingleTestCase(it, "http://192.168.0.124:8068")
+    }
     val json = Gson().toJson(responses)!!
-    File("new_test_data").writeText(json)
+    File("test_data.json").writeText(json)
 }

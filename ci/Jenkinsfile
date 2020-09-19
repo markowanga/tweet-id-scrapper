@@ -37,7 +37,7 @@ pipeline {
                 sleep 40
                 sh 'docker container ls -a'
                 sh 'curl http://192.168.0.124:46573'
-                sh './gradlew integrationTest --stacktrace --debug'
+                sh './gradlew integrationTest --stacktrace --info'
             }
         }
         stage('Build') {
