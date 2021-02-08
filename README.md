@@ -1,5 +1,7 @@
 # tweet-id-scrapper
 
+!!! This repository is archived – please check my new project https://github.com/markowanga/stweet 😉 !!!
+
 tweet-id-scrapper is a service which can crawl base tweet details by its id.
 Sometimes tweets datasets are published by their id — this service allows you to download basic data.
 
